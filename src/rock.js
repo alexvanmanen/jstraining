@@ -1,11 +1,11 @@
 
-var option = {
-    ROCK: { name:"Rock", index: 1 },
-    PAPER: { name: "Paper", index:2 },
-    SCISSORS: { name:"Scissors", index:3 }
+const option = {
+    ROCK: "Rock",
+    PAPER: "Paper",
+    SCISSORS: "Scissors"
 }
 
-var GameResult = {
+const GameResult = {
     WIN: "Je hebt gewonnen",
     LOSES: "Je hebt verloren",
     DRAW: "GELIJKSPEL",
@@ -45,7 +45,7 @@ var computerChoise = randomgenerator();
 
 function outcome (myChoise, computerChoise)
 {
-        console.log("Ik heb gekozen: "+ myChoise.name + " De computer: "+ computerChoise.name + " En de uitkomst is: " +
+        console.log("Ik heb gekozen: "+ myChoise + ". De computer: "+ computerChoise + ". En de uitkomst is: " +
     outcomeAnalyser(myChoise,computerChoise));
 }
 
