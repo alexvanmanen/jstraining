@@ -14,6 +14,12 @@ rl.question("Steen, papier of schaar? ", function(item) {
         rl.close();
 });
 
+var GameResult = {
+    WIN: 1,
+    LOSSES: 2,
+    EQUAL: 3,
+};
+
 rl.on("close", function() {
     process.exit(0);
 });
