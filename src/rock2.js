@@ -2,7 +2,6 @@
 // var computerChoice;
 // var outcome = determineOutcome(ourChoice, computerChoice);
 // console.log(outcome);
-
 const readline = require("readline");
 const rl = readline.createInterface({
     input: process.stdin,
@@ -19,6 +18,8 @@ var GameResult = {
     LOSSES: 2,
     EQUAL: 3,
 };
+
+console.log(GameResult.values(object1));
 
 rl.on("close", function() {
     process.exit(0);
