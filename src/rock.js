@@ -1,12 +1,8 @@
 const options = Object.freeze( { ROCK: "Rock", PAPER: "Paper", SCISSORS: "Scissors"});
 const gameResult = Object.freeze( {   WIN: "Je hebt gewonnen", LOSES: "Je hebt verloren", DRAW: "GELIJKSPEL"});
 
+import Player from "./player";
 
-class Player {
-    getChoice(){
-        return options.SCISSORS;
-    }
-}
 let Remy = new Player();
 
 
@@ -28,7 +24,6 @@ class Calculator {
         }
 
     }
-
 
 
     outcome(myChoice, computerChoice) {
