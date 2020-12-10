@@ -1,52 +1,68 @@
+const options = Object.freeze( { ROCK: "Rock", PAPER: "Paper", SCISSORS: "Scissors"});
+const gameResult = Object.freeze( {   WIN: "Je hebt gewonnen", LOSES: "Je hebt verloren", DRAW: "GELIJKSPEL"});
+console.log();
 
-const option = {
-    ROCK: "Rock",
-    PAPER: "Paper",
-    SCISSORS: "Scissors"
-}
+class Test {
 
-const GameResult = {
-    WIN: "Je hebt gewonnen",
-    LOSES: "Je hebt verloren",
-    DRAW: "GELIJKSPEL",
-};
-
-function winsFrom(value){
-    switch(value) {
-        case option.ROCK:
-            return option.SCISSORS;
-        case option.PAPER:
-            return option.ROCK;
-        case option.SCISSORS:
-            return option.PAPER;
-      default: throw new Error('Het ging mis');
+    t;
+    x;
+    constructor(t, x) {
+        this.t = t;
+        this.x = x;
     }
 }
 
-function outcomeAnalyser(myChoise,computerChoise){
-    if (winsFrom(myChoise) === computerChoise){
-       return GameResult.WIN; 
-    }
-    else if (winsFrom(computerChoise) === myChoise){
-        return GameResult.LOSES;
-    }
-    else {
-        return GameResult.DRAW;
+class Player {
+    constructor() {
+        this.myChoice="hoi";
     }
 }
+let Remy = new Player();
+let computer = new Computer();
 
-var myChoise = option.SCISSORS;
 
-function randomgenerator (){
-    var randomGetal = Math.floor(Math.random() * Object.keys(option).length);
-    return option[Object.keys(option)[randomGetal]];
+
+class Computer {
+    randomgenerator() {
+        var randomGetal = Math.floor(Math.random() * Object.keys(options).length);
+        return options[Object.keys(options)[randomGetal]];
+    }
 }
-var computerChoise = randomgenerator();
+class Calculator {
+    outcomeAnalyser(myChoice, computerChoice) {
+        if (this.winsFrom(myChoice) === computerChoice) {
+            return gameResult.WIN;
+        } else if (this.winsFrom(computerChoice) === myChoice) {
+            return gameResult.LOSES;
+        } else {
+            return gameResult.DRAW;
+        }
 
-function outcome (myChoise, computerChoise)
-{
-        console.log("Ik heb gekozen: "+ myChoise + ". De computer: "+ computerChoise + ". En de uitkomst is: " +
-    outcomeAnalyser(myChoise,computerChoise));
+    }
+
+
+
+    outcome(myChoice, computerChoice) {
+        console.log("Ik heb gekozen: " + myChoice + ". De computer: " + computerChoice + ". En de uitkomst is: " +
+            this.outcomeAnalyser(myChoice, computerChoice));
+    }
+    winsFrom(value) {
+        switch (value) {
+            case options.ROCK:
+                return options.SCISSORS;
+            case options.PAPER:
+                return options.ROCK;
+            case options.SCISSORS:
+                return options.PAPER;
+            default:
+                throw new Error('Het ging mis');
+        }
+
+    }
+
+
 }
 
-outcome(myChoise, computerChoise);
+let calculator = new Calculator();
+let laptop = new Computer();
+calculator.outcome(options.SCISSORS, laptop.randomgenerator())
