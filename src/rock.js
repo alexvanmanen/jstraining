@@ -1,24 +1,13 @@
 const options = Object.freeze( { ROCK: "Rock", PAPER: "Paper", SCISSORS: "Scissors"});
 const gameResult = Object.freeze( {   WIN: "Je hebt gewonnen", LOSES: "Je hebt verloren", DRAW: "GELIJKSPEL"});
-console.log();
 
-class Test {
-
-    t;
-    x;
-    constructor(t, x) {
-        this.t = t;
-        this.x = x;
-    }
-}
 
 class Player {
-    constructor() {
-        this.myChoice="hoi";
+    getChoice(){
+        return options.SCISSORS;
     }
 }
 let Remy = new Player();
-let computer = new Computer();
 
 
 
@@ -65,4 +54,5 @@ class Calculator {
 
 let calculator = new Calculator();
 let laptop = new Computer();
-calculator.outcome(options.SCISSORS, laptop.randomgenerator())
+let player = new Player();
+calculator.outcome(player.getChoice(), laptop.randomgenerator())
