@@ -35,19 +35,7 @@ class Calculator {
 
     }
 
-    outcome(myChoice, computerChoice) {
-        let outcome = this.outcomeAnalyser(myChoice, computerChoice);
-        let element = document
-            .getElementById('outcome');
-        element.innerHTML =
-            "Ik heb gekozen: " +
-            "<play-image gameOption=" + myChoice.toLowerCase() + "></play-image>. " +
-            "De computer:" +
-            "<play-image gameOption=" + computerChoice.toLowerCase() + "></play-image>" +
-            "<h2> De uitkomst is: <strong>" + outcome.text +
-            "</strong></h2>";
-        element.style = "background:"+ outcome.color;
-    }
+
     winsFrom(value) {
         switch (value) {
             case options.ROCK:
@@ -63,11 +51,10 @@ class Calculator {
     }
 }
 
-function play (keuze) {
-    let calculator = new Calculator();
-    let laptop = new Computer();
-    let player = new Player();
-
-    calculator.outcome(keuze, laptop.randomgenerator())
-
+class Game {
+    constructor(choice) {
+        this.computerChoice = new Computer().randomgenerator();
+        this.outcome = new Calculator().outcomeAnalyser(choice, this.computerChoice);
+    }
 }
+
