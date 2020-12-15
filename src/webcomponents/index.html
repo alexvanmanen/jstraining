@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Kandidatenlijst</title>
+    <script src="CandidateImage.js"> </script>
+    <script src="CustomParagraph.js"> </script>
+
+    <style>
+        img { display: none; }
+    </style>
+
+</head>
+<body>
+
+<candidate-image firstname="Sigrid" lastname="Kaag"></candidate-image>
+<br />
+<candidate-image firstname="Wopke" lastname="Hoekstra"></candidate-image>
+
+<br>
+<template id="candidate-caption">
+    <style>
+        p {
+            color: white;
+            background-color: #666;
+            padding: 5px;
+            width: 200px;
+        }
+    </style>
+    <p><slot name="candidate-name">Naam lijsttrekker</slot></p>
+</template>
+
+
+<candidate-caption>
+    <span slot="candidate-name">Wopke Hoekstra</span>
+</candidate-caption>
+
+<candidate-caption>
+    <ul slot="candidate-name">
+        <li>Andere tekst</li>
+        <li>In een lijst</li>
+    </ul>
+</candidate-caption>
+
+</body>
+</html>
