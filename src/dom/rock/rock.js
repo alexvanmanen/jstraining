@@ -1,11 +1,21 @@
+class GameResult {
+    constructor(text, color) {
+        this.text = text;
+        this.color = color;
+    }
+
+}
+
 const options = Object.freeze( { ROCK: "Rock", PAPER: "Paper", SCISSORS: "Scissors"});
-const gameResult = Object.freeze( {   WIN: "Je hebt gewonnen", LOSES: "Je hebt verloren", DRAW: "GELIJKSPEL"});
+const gameResult = Object.freeze( {   WIN: new GameResult("Je hebt gewonnen", "green"),
+    LOSES: new GameResult("Je hebt verloren", "red"), DRAW: new GameResult("GELIJKSPEL", "white")});
 
 class Player {
     getChoice(){
         return options.SCISSORS;
     }
 }
+
 
 class Computer {
     randomgenerator() {
@@ -27,12 +37,12 @@ class Calculator {
 
 
     outcome(myChoice, computerChoice) {
-
+        var outcome = this.outcomeAnalyser(myChoice, computerChoice);
         var element = document
             .getElementById('outcome');
-        element.innerText = ("Ik heb gekozen: <strong>" + myChoice + "</strong>. De computer: <strong>" + computerChoice + "</strong>. En de uitkomst is: <strong>" +
-            this.outcomeAnalyser(myChoice, computerChoice) + "</strong>");
-        element.style = "background: red";
+        element.innerHTML = ("Ik heb gekozen: <img src='img/" + myChoice.toLowerCase() + ".jpg'>. De computer:<img src='img/" + computerChoice.toLowerCase() + ".jpg'>. <h2> De uitkomst is: <strong>" + outcome.text
+             + "</strong></h2>");
+        element.style = "background:"+ outcome.color;
     }
     winsFrom(value) {
         switch (value) {
@@ -49,7 +59,7 @@ class Calculator {
     }
 }
 
-function x (keuze) {
+function play (keuze) {
     let calculator = new Calculator();
     let laptop = new Computer();
     let player = new Player();
