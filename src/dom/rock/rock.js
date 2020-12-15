@@ -30,8 +30,8 @@ class Calculator {
 
         var element = document
             .getElementById('outcome');
-        element.innerText = ("Ik heb gekozen: <strong>" + myChoice + "</strong>. De computer: <strong>" + computerChoice + "</strong>. En de uitkomst is: <strong>" +
-            this.outcomeAnalyser(myChoice, computerChoice) + "</strong>");
+        element.innerHTML = ("Ik heb gekozen: <img src='img/" + myChoice.toLowerCase() + ".jpg'>. De computer:<img src='img/" + computerChoice.toLowerCase() + ".jpg'>. <h2> De uitkomst is: <strong>" +
+            this.outcomeAnalyser(myChoice, computerChoice) + "</strong></h2>");
         element.style = "background: red";
     }
     winsFrom(value) {
@@ -49,7 +49,7 @@ class Calculator {
     }
 }
 
-function x (keuze) {
+function play (keuze) {
     let calculator = new Calculator();
     let laptop = new Computer();
     let player = new Player();
