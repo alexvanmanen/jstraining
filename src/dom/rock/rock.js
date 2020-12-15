@@ -35,13 +35,17 @@ class Calculator {
 
     }
 
-
     outcome(myChoice, computerChoice) {
-        var outcome = this.outcomeAnalyser(myChoice, computerChoice);
-        var element = document
+        let outcome = this.outcomeAnalyser(myChoice, computerChoice);
+        let element = document
             .getElementById('outcome');
-        element.innerHTML = ("Ik heb gekozen: <img src='img/" + myChoice.toLowerCase() + ".jpg'>. De computer:<img src='img/" + computerChoice.toLowerCase() + ".jpg'>. <h2> De uitkomst is: <strong>" + outcome.text
-             + "</strong></h2>");
+        element.innerHTML =
+            "Ik heb gekozen: " +
+            "<play-image gameOption=" + myChoice.toLowerCase() + "></play-image>. " +
+            "De computer:" +
+            "<play-image gameOption=" + computerChoice.toLowerCase() + "></play-image>" +
+            "<h2> De uitkomst is: <strong>" + outcome.text +
+            "</strong></h2>";
         element.style = "background:"+ outcome.color;
     }
     winsFrom(value) {
