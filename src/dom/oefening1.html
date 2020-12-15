@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Voorbeeld</title>
+</head>
+<body>
+<div id="eenElementId"></div>
+</body>
+</html>
+<script>
+    var node = document
+        .createTextNode("Tekst dynamisch toegevoegd");
+    var element = document
+        .getElementById('eenElementId');
+    element.appendChild(node);
+</script>
