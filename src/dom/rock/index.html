@@ -6,15 +6,17 @@
 </head>
 <body>
 <script src="rock.js"></script>
+<script src="img.js"></script>
 <style>
     img {
         cursor:pointer;
     }
 </style>
     <p>Maak je keuze:</p>
-<img src="img/rock.jpg" onclick="play(options.ROCK);">
-<img src="img/paper.jpg" onclick="play(options.PAPER)">
-<img src="img/scissors.jpg" onclick="play(options.SCISSORS)">
+
+<play-image gameOption="Rock"></play-image>
+<play-image gameOption="Paper"></play-image>
+<play-image gameOption="Scissors"></play-image>
 
     <div id="outcome"></div>
 </body>
