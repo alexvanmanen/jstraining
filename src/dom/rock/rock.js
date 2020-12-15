@@ -27,8 +27,12 @@ class Calculator {
 
 
     outcome(myChoice, computerChoice) {
-        console.log("Ik heb gekozen: " + myChoice + ". De computer: " + computerChoice + ". En de uitkomst is: " +
-            this.outcomeAnalyser(myChoice, computerChoice));
+
+        var element = document
+            .getElementById('outcome');
+        element.innerText = ("Ik heb gekozen: <strong>" + myChoice + "</strong>. De computer: <strong>" + computerChoice + "</strong>. En de uitkomst is: <strong>" +
+            this.outcomeAnalyser(myChoice, computerChoice) + "</strong>");
+        element.style = "background: red";
     }
     winsFrom(value) {
         switch (value) {
@@ -45,9 +49,11 @@ class Calculator {
     }
 }
 
-let calculator = new Calculator();
-let laptop = new Computer();
-let player = new Player();
+function x (keuze) {
+    let calculator = new Calculator();
+    let laptop = new Computer();
+    let player = new Player();
 
-calculator.outcome(player.getChoice(), laptop.randomgenerator())
+    calculator.outcome(keuze, laptop.randomgenerator())
 
+}
