@@ -1,0 +1,17 @@
+<html>
+<body>
+<h2 class="voorbeeld">Een kop met class="voorbeeld"</h2>
+<p class="voorbeeld">Een paragraaf met class="voorbeeld".</p>
+<p>Verander de achtergrond van alles met de class="voorbeeld".</p>
+<button onclick="mijnFunctie()">Voer uit</button>
+<script>
+    function mijnFunctie() {
+        let geheleDocument;
+        geheleDocument = document.querySelectorAll(".voorbeeld");
+        geheleDocument.forEach((item, i) => {
+            item.style.backgroundColor="blue";
+        });
+    }
+</script>
+</body>
+</html>
