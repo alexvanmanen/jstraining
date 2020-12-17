@@ -4,16 +4,29 @@
 <button type="button" onclick="laad()">Laad Ajax</button>
 <p id="ajaxPagina"></p>
 <script>
+    function wanneerKlaar() {
+        if(this.readyState == XMLHttpRequest.LOADING) {
+            console.log("Loading");
+            document.getElementById("ajaxPagina").innerHTML = "loading ....";
+        } else if (this.readyState == XMLHttpRequest.DONE) {
+            // document.getElementById("ajaxPagina").innerHTML = "DONE:" + this.responseText;
+            console.log("Done" + this.status);
+            if (this.status == 200) {
+                document.getElementById("ajaxPagina").innerHTML = this.responseText;
+            } else {
+                document.getElementById("ajaxPagina").innerHTML = "Status is: " + this.status;
+            }
+        }
+    }
+
     function laad() {
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("ajaxPagina").innerHTML = this.responseText;
-            }
-        };
+        xhttp.onreadystatechange = wanneerKlaar;
         xhttp.open("GET", "ajax.html", true);
         xhttp.send();
     }
+
+
 </script>
 </body>
 </html>
