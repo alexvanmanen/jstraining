@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<button type="button" onclick="laad()">Laad Ajax</button>
+<p id="ajaxPagina"></p>
+<script>
+    function laad() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("ajaxPagina").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "ajax.html", true);
+        xhttp.send();
+    }
+</script>
+</body>
+</html>
