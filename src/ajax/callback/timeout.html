@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="divje"></div>
+<script>
+    let anoniemeFunction = ()=> extraArgument("argument1");
+    setTimeout(anoniemeFunction, 3000);
+
+    function extraArgument (mijnArgument) {
+        myFunction("Toon tekst naar 3000 ms met argument " + mijnArgument);
+    }
+
+    function myFunction(mijnArgument) {
+        document.getElementById("divje").innerHTML = mijnArgument;
+    }
+</script>
+</body>
+</html>
