@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Promise</h2>
+
+<p id="demo"></p>
+
+<script>
+    let myPromise = new Promise(function(gaatGoed, gaatSlecht) {
+        function apiCall() {
+            let x = Math.floor(Math.random() * 2);
+            if (x == 0) {
+                gaatGoed("OK");
+            } else {
+                gaatSlecht("Error");
+            }
+        }
+        setTimeout(apiCall, 100);
+    });
+
+
+    myPromise.then(succesfull,notSuccesfull);
+
+    function succesfull(value) {
+        myDisplayer(value);
+    }
+
+    function notSuccesfull(value) {
+            myDisplayerError(value);
+    }
+
+    function myDisplayer(some) {
+        document.getElementById("demo").innerHTML = some;
+    }
+    function myDisplayerError(some) {
+        document.getElementById("demo").innerHTML =
+            "<font color='red'>"+some + "</font>";
+    }
+</script>
+
+</body>
+</html>
+
