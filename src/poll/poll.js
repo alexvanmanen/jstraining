@@ -1,4 +1,4 @@
-function doeHet(bestand) {
+function goldenRetriever(bestand) {
     return new Promise((resolve, reject) => {
             let xhttp = new XMLHttpRequest();
 
@@ -18,7 +18,6 @@ function doeHet(bestand) {
     );
 }
 
-
 function parseData(result) {
     var percentage = result.seats / 1.5;
     var pollDivje = document.getElementById("poll");
@@ -32,28 +31,54 @@ function parseData(result) {
 
 }
 
-async function render() {
-    let x = await doeHet('results.json');
-    x = x.concat(await doeHet('resultsAlphen.json'))
-    x = x.concat(await doeHet('resultsUtrecht.json'));
-
-    const partyInfoArray = x.flat(1);
+function getPartySet(partyInfoArray) {
     let partySet = new Set();
-    partyInfoArray.map(partyInfo => partyInfo.party).forEach( party => partySet.add(party));
-    console.log(partySet);
-    const average = (array) => array.map(element => element.seats).reduce((vorigeWaarde, huidigeWaarde) => vorigeWaarde + huidigeWaarde, 0) / array.length;
-    let numberSeats = 0;
-    partySet.forEach(party => {
-        numberSeats += (average(partyInfoArray.filter(element => element.party === party)));
-    });
-
-    console.log(Math.round(numberSeats));
-
-    partySet.forEach(party => {
-        parseData({party: party, seats: average(partyInfoArray.filter(element => element.party === party))})
-    });
+    partyInfoArray.map(partyInfo => partyInfo.party).forEach(party => partySet.add(party));
+    return partySet;
 }
 
+function averageVoteCount() {
+    return (array) => array.map(element => element.seats).reduce((vorigeWaarde, huidigeWaarde) => vorigeWaarde + huidigeWaarde, 0) / array.length;
+}
+
+function getNumberOfSeats(partyInfoArray, average) {
+    let numberSeats = 0;
+    getPartySet(partyInfoArray).forEach(party => {
+        numberSeats += (average(partyInfoArray.filter(element => element.party === party)));
+    });
+    return numberSeats;
+}
+
+function showGraphicsForOneParty(average, partyInfoArray) {
+    return party => {
+        parseData({ party: party, seats: average(partyInfoArray.filter(element => element.party === party)) })
+    };
+}
+
+async function retrieveVotingData() {
+    let votingData = await goldenRetriever('results.json');
+    votingData = votingData.concat(await goldenRetriever('resultsAlphen.json'))
+    votingData = votingData.concat(await goldenRetriever('resultsUtrecht.json'));
+    return votingData.flat(1);
+}
+
+function showGraphicsForAllParties(votingData) {
+    return getPartySet(votingData).forEach(showGraphicsForOneParty(averageVoteCount(), votingData));
+}
+
+async function render() {
+
+    try {
+        let votingData = await retrieveVotingData();
+
+        console.log(Math.round(getNumberOfSeats(votingData, averageVoteCount())));
+
+        showGraphicsForAllParties(votingData);
+
+    } catch (e) {
+        console.log("het ging mis: " + e);
+    }
+}
 
 render();
 
