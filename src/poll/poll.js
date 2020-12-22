@@ -42,6 +42,12 @@ async function render() {
     partyInfoArray.map(partyInfo => partyInfo.party).forEach( party => partySet.add(party));
     console.log(partySet);
     const average = (array) => array.map(element => element.seats).reduce((vorigeWaarde, huidigeWaarde) => vorigeWaarde + huidigeWaarde, 0) / array.length;
+    let numberSeats = 0;
+    partySet.forEach(party => {
+        numberSeats += (average(partyInfoArray.filter(element => element.party === party)));
+    });
+
+    console.log(Math.round(numberSeats));
 
     partySet.forEach(party => {
         parseData({party: party, seats: average(partyInfoArray.filter(element => element.party === party))})
