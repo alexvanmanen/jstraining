@@ -1,4 +1,4 @@
-function doeHet() {
+function doeHet(bestand) {
     return new Promise((resolve, reject) => {
             let xhttp = new XMLHttpRequest();
 
@@ -11,37 +11,11 @@ function doeHet() {
                     }
 
                 }
-
-
             }
-        xhttp.open("GET", "results.json", true);
+        xhttp.open("GET", bestand, true);
         xhttp.send();
         }
     );
-}
-
-let promise1 = new Promise(function (resolve, reject) {
-    function laad(bestand) {
-        bestand = "results.json";
-        var xhttp = new XMLHttpRequest();
-
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                resolve(JSON.parse(this.responseText));
-            }
-        }
-
-        xhttp.open("GET", bestand, true);
-        xhttp.send();
-    }
-});
-
-function resolveNa4Seconds() {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve('resolved 4 seconden');
-        }, 2000);
-    });
 }
 
 function showPoll(data) {
@@ -62,9 +36,8 @@ function parseData(result) {
 }
 
 async function render() {
-    const x = await doeHet();
+    const x = await doeHet('results.json');
     console.log(x);
-    console.log(await resolveNa4Seconds());
 }
 
 render();
