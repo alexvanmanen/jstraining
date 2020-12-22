@@ -18,9 +18,6 @@ function doeHet(bestand) {
     );
 }
 
-function showPoll(data) {
-    data.forEach(parseData);
-}
 
 function parseData(result) {
     var percentage = result.seats / 1.5;
@@ -31,7 +28,7 @@ function parseData(result) {
     balkje.setAttribute("style", "height:24px;width:" + percentage + "%; margin:20px;");
     pollDivje.appendChild(balkje);
     balkje.innerHTML += "<strong>" + result.party + "</strong>";
-    balkje.innerHTML += result.seats + "<br><br>";
+    balkje.innerHTML += Math.round(result.seats) + "<br><br>";
 
 }
 
@@ -47,7 +44,7 @@ async function render() {
     const average = (array) => array.map(element => element.seats).reduce((vorigeWaarde, huidigeWaarde) => vorigeWaarde + huidigeWaarde, 0) / array.length;
 
     partySet.forEach(party => {
-        console.log(party+average(partyInfoArray.filter(element => element.party === party)))
+        parseData({party: party, seats: average(partyInfoArray.filter(element => element.party === party))})
     });
 }
 
