@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="ajaxPagina"></p>
+<script>
+    function resolveNa2Seconds() {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve('resolved 2 seconden');
+            }, 2000);
+        });
+    }
+
+    function resolveNa4Seconds() {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve('resolved 4 seconden');
+            }, 4000);
+        });
+    }
+
+    async function asyncCall() {
+        show('calling');
+        const eersteResultaat = await resolveNa2Seconds();
+        show(eersteResultaat);
+        const tweedeResultaat = await resolveNa4Seconds();
+        show(tweedeResultaat);
+    }
+
+    asyncCall();
+
+
+    function wanneerKlaar(event, displayer) {
+        if(event.readyState == XMLHttpRequest.LOADING) {
+            console.log("Loading");
+            document.getElementById("ajaxPagina").innerHTML = "loading ....";
+        } else if (event.readyState == XMLHttpRequest.DONE) {
+            // document.getElementById("ajaxPagina").innerHTML = "DONE:" + event.responseText;
+            console.log("Done" + event.status);
+            if (event.status == 200) {
+                displayer(event.responseText);
+            } else {
+                displayer("Status is: " + event.status);
+            }
+        }
+    }
+
+    function show(text) {
+        document.getElementById("ajaxPagina").innerHTML = text;
+    }
+
+    function laad() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            wanneerKlaar(this,show);
+        }
+        xhttp.open("GET", "ajax.html", true);
+        xhttp.send();
+    }
+
+</script>
+</body>
+</html>
