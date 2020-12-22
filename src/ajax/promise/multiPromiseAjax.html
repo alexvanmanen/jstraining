@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Promise</h2>
+
+<p id="logo"></p>
+
+
+<script>
+    const div = document.getElementById("logo");
+
+    function show(some) {
+        div.innerHTML = some;
+    }
+
+    function showError(some) {
+        div.innerHTML = some;
+        div.style = "color: red";
+    }
+
+    let myPromise = new Promise(function(resolve, reject) {
+        function apiCall() {
+            if (this.readyState == XMLHttpRequest.DONE) {
+                if (this.status == 200) {
+                    resolve(this.responseText);
+                } else {
+                    reject("Status is: " + this.status);
+                }
+            }
+        }
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = apiCall;
+        xhttp.open("GET", "../ajax.html", true);
+        xhttp.send();
+    });
+
+    let myPromise2 = new Promise(function(resolve, reject) {
+        function apiCall() {
+            if (this.readyState == XMLHttpRequest.DONE) {
+                if (this.status == 200) {
+                    resolve(this.responseText);
+                } else {
+                    reject("Status is: " + this.status);
+                }
+            }
+        }
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = apiCall;
+        xhttp.open("GET", "../ajax.html", true);
+        xhttp.send();
+    });
+
+    const myPromise3 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 3000, 'foo');
+    });
+
+    const myPromise4 = Promise.resolve("Voeg maar wat toe");
+
+    const myPromise5 = Promise.reject("HET GAAT MIS!!!");
+
+    Promise.all([myPromise, myPromise2, myPromise3, myPromise4, myPromise5]).then(
+        (value) => show(value),
+        (value) => showError(value));
+
+</script>
+
+</body>
+</html>
+
