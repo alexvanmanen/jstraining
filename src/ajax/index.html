@@ -4,17 +4,17 @@
 <button type="button" onclick="laad()">Laad Ajax</button>
 <p id="ajaxPagina"></p>
 <script>
-    function wanneerKlaar(event, displayer) {
-        if(event.readyState == XMLHttpRequest.LOADING) {
+    function wanneerKlaar(request, displayer) {
+        if(request.readyState == XMLHttpRequest.LOADING) {
             console.log("Loading");
             document.getElementById("ajaxPagina").innerHTML = "loading ....";
-        } else if (event.readyState == XMLHttpRequest.DONE) {
+        } else if (request.readyState == XMLHttpRequest.DONE) {
             // document.getElementById("ajaxPagina").innerHTML = "DONE:" + event.responseText;
-            console.log("Done" + event.status);
-            if (event.status == 200) {
-                displayer(event.responseText);
+            console.log("Done" + request.status);
+            if (request.status == 200) {
+                displayer(request.responseText);
             } else {
-                displayer("Status is: " + event.status);
+                displayer("Status is: " + request.status);
             }
         }
     }
