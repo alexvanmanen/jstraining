@@ -1,4 +1,4 @@
-import {renderBarForAllParties} from "./graphics.js";
+import {Graphics} from "./Graphics.js";
 
 function goldenRetriever(bestand) {
     return new Promise((resolve, reject) => {
@@ -32,7 +32,7 @@ async function render() {
 
     try {
         let votingData = await retrieveVotingData();
-        renderBarForAllParties(votingData);
+        new Graphics().renderBarForAllParties(votingData);
     } catch (e) {
         console.log("het ging mis: " + e);
     }
