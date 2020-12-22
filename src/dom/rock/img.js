@@ -4,7 +4,7 @@ class PlayImage extends HTMLElement {
 
         // Maak een afbeelding
         const image = new Image();
-        let gameOption = this.getAttribute('gameOption');
+        let gameOption = this.getAttribute('name');
         let choice = getObjectByValue(options, gameOption)
         image.src = './img/' + gameOption + '.jpg';
 
@@ -13,6 +13,20 @@ class PlayImage extends HTMLElement {
         this.shadow.appendChild(image);
     }
 }
+
+customElements.define('rock-paper',
+    class extends HTMLElement {
+        constructor() {
+            super();
+            let template = document.getElementById('rock-paper');
+            let templateContent = template.content;
+
+            const shadowRoot = this.attachShadow({mode: 'open'})
+                .appendChild(templateContent.cloneNode(true));
+        }
+    }   
+);
+
 function getObjectByValue(object, value) {
     return object[Object.keys(object).find(key => object[key] === value)];
 }
@@ -23,9 +37,9 @@ function play(myChoice) {
         .getElementById('outcome');
     element.innerHTML =
         "Ik heb gekozen: " +
-        "<play-image gameOption=" + myChoice.toLowerCase() + "></play-image>. " +
+        "<play-image name=" + myChoice.toLowerCase() + "></play-image>. " +
         "De computer:" +
-        "<play-image gameOption=" + game.computerChoice.toLowerCase() + "></play-image>" +
+        "<play-image name=" + game.computerChoice.toLowerCase() + "></play-image>" +
         "<h2> De uitkomst is: <strong>" + game.outcome.text +
         "</strong></h2>";
     element.style = "background:"+ game.outcome.color;

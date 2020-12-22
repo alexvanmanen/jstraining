@@ -1,0 +1,58 @@
+[
+  {
+    "party": "VVD",
+    "seats" : 34
+  },
+  {
+    "party": "PVV",
+    "seats" : 26
+  },
+  {
+    "party": "CDA",
+    "seats" : 19
+  },
+  {
+    "party": "D66",
+    "seats" : 12
+  },
+  {
+    "party": "GL",
+    "seats" : 10
+  },
+  {
+    "party": "SP",
+    "seats" : 9
+  },
+  {
+    "party": "PvdA",
+    "seats" : 13
+  },
+  {
+    "party": "CU",
+    "seats" : 7
+  },
+  {
+    "party": "PvdD",
+    "seats" : 6
+  },
+  {
+    "party": "50+",
+    "seats" : 1
+  },
+  {
+    "party": "SGP",
+    "seats" : 4
+  },
+  {
+    "party": "Denk",
+    "seats" : 3
+  },
+  {
+    "party": "FVD",
+    "seats" : 4
+  },
+  {
+    "party": "Andere",
+    "seats" : 2
+  }
+]
