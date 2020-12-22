@@ -12,8 +12,8 @@ function doeHet(bestand) {
 
                 }
             }
-        xhttp.open("GET", bestand, true);
-        xhttp.send();
+            xhttp.open("GET", bestand, true);
+            xhttp.send();
         }
     );
 }
@@ -36,19 +36,24 @@ function parseData(result) {
 }
 
 async function render() {
-    const x = await doeHet('results.json');
-    console.log(x);
+    let x = await doeHet('results.json');
+    x = x.concat(await doeHet('resultsAlphen.json'))
+    x = x.concat(await doeHet('resultsUtrecht.json'));
+
+    const partyInfoArray = x.flat(1);
+    let partySet = new Set();
+    partyInfoArray.map(partyInfo => partyInfo.party).forEach( party => partySet.add(party));
+    console.log(partySet);
+    const average = (array) => array.map(element => element.seats).reduce((vorigeWaarde, huidigeWaarde) => vorigeWaarde + huidigeWaarde, 0) / array.length;
+
+    partySet.forEach(party => {
+        console.log(party+average(partyInfoArray.filter(element => element.party === party)))
+    });
 }
+
 
 render();
 
-const poll = [[{ party: "VVD", seats: 34 }, { party: "CDA", seats: 1 }], { party: "VVD", seats: 12 }, {
-    party: "CDA",
-    seats: 12
-}];
-const mergedArray = poll.flat(1);
 
-const average = (array) => array.map(element => element.seats).reduce((vorigeWaarde, huidigeWaarde) => vorigeWaarde + huidigeWaarde, 0) / array.length;
-mergedArray.forEach(partyInfo => {
-    console.log(average(mergedArray.filter(element => element.party === partyInfo.party)))
-});
+
+
